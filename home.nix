@@ -21,7 +21,7 @@
     };
     extraConfig = {
       foreground = "#93a1a1";
-      background = "[90]#141c21";
+      background = "[80]#000000";
       depth = 32;
       cursorColor = "#afbfbf";
       "perl-ext-common" = with builtins; concatStringsSep "," [

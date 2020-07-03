@@ -4,6 +4,11 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.firefox = {
+    enable = true;
+    enableAdobeFlash = true;
+  };
+
   # xsession config
   xsession.pointerCursor = {
     name = "Vanilla-DMZ";
@@ -52,6 +57,24 @@
 
   systemd.user = {
     startServices = true;
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      # "application/x-desktop" = ["run-desktop.desktop"];
+      "x-scheme-handler/http"=["firefox.desktop"];
+      "x-scheme-handler/https"=["firefox.desktop"];
+      "text/html"=["firefox.desktop"];
+      "application/x-extension-htm"=["userapp-Firefox-U1D9H0.desktop"];
+      "application/x-extension-html"=["userapp-Firefox-U1D9H0.desktop"];
+      "application/x-extension-shtml"=["userapp-Firefox-U1D9H0.desktop"];
+      "application/xhtml+xml"=["userapp-Firefox-U1D9H0.desktop"];
+      "application/x-extension-xhtml"=["userapp-Firefox-U1D9H0.desktop"];
+      "application/x-extension-xht"=["userapp-Firefox-U1D9H0.desktop"];
+      "x-scheme-handler/about"=["firefox.desktop"];
+      "x-scheme-handler/unknown"=["firefox.desktop"];
+    };
   };
 
   # This value determines the Home Manager release that your

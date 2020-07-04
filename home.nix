@@ -47,6 +47,11 @@
     };
   };
 
+
+  services.taffybar = {
+    enable = true;
+  };
+
   services.picom = {
     enable = true;
     fade            = true;
@@ -66,12 +71,6 @@
       "x-scheme-handler/http"=["firefox.desktop"];
       "x-scheme-handler/https"=["firefox.desktop"];
       "text/html"=["firefox.desktop"];
-      "application/x-extension-htm"=["userapp-Firefox-U1D9H0.desktop"];
-      "application/x-extension-html"=["userapp-Firefox-U1D9H0.desktop"];
-      "application/x-extension-shtml"=["userapp-Firefox-U1D9H0.desktop"];
-      "application/xhtml+xml"=["userapp-Firefox-U1D9H0.desktop"];
-      "application/x-extension-xhtml"=["userapp-Firefox-U1D9H0.desktop"];
-      "application/x-extension-xht"=["userapp-Firefox-U1D9H0.desktop"];
       "x-scheme-handler/about"=["firefox.desktop"];
       "x-scheme-handler/unknown"=["firefox.desktop"];
     };

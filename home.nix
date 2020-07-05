@@ -52,10 +52,6 @@
   };
 
 
-  services.taffybar = {
-    enable = true;
-  };
-
   services.picom = {
     enable = true;
     fade            = true;

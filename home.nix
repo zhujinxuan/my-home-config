@@ -16,6 +16,10 @@
     size = 128;
   };
 
+  programs.chromium = {
+    enable = true;
+  };
+
   programs.urxvt = {
     enable= true;
     fonts =  [ "xft:Droid Sans Mono Nerd Font:size=9" ];

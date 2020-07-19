@@ -10,7 +10,7 @@
 
   programs.firefox = {
     enable = true;
-    enableAdobeFlash = true;
+    # enableAdobeFlash = true;
   };
 
   # xsession config

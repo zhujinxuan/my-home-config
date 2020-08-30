@@ -5,7 +5,12 @@
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
-  home.packages = [pkgs.touchegg];
+  home.packages = with pkgs; [
+    touchegg
+    fira-code
+    fira-code-symbols
+  ];
+
   home.file = {
     touchegg = {
       source = ./touchegg.conf;
@@ -42,6 +47,7 @@
       "M-S-v" = "perl:clipboard:paste_escaped";
     };
     extraConfig = {
+      letterSpace = -7;
       foreground = "#93a1a1";
       background = "[80]#000000";
       depth = 32;

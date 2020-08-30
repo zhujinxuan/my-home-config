@@ -4,6 +4,15 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  fonts.fontconfig.enable = true;
+  home.packages = [pkgs.touchegg];
+  home.file = {
+    touchegg = {
+      source = ./touchegg.conf;
+      target = ".config/touchegg/touchegg.conf";
+    };
+  };
+
   programs.i3status = {
     enable = true;
   };
@@ -65,7 +74,7 @@
 
   services.screen-locker = {
     enable = true;
-    lockCmd =  "\${pkgs.i3lock}/bin/i3lock -n -c 000000";
+    lockCmd =  "${pkgs.i3lock}/bin/i3lock -n -c 000000";
   };
 
   systemd.user = {

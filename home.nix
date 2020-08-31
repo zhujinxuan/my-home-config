@@ -4,11 +4,13 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     touchegg
     fira-code
     fira-code-symbols
+    # haskellPackages.yeganesh
+    # nerdfonts
   ];
 
   home.file = {

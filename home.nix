@@ -82,7 +82,7 @@
 
   services.screen-locker = {
     enable = true;
-    lockCmd =  "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+    lockCmd =  "${pkgs.i3lock}/bin/i3lock -n -c 111111 -t";
   };
 
   systemd.user = {

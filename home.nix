@@ -72,12 +72,25 @@
     };
   };
 
+  services = {
+    picom = {
+      enable = true;
+      fade            = true;
+      shadow          = true;
+      fadeDelta       = 2;
+    };
 
-  services.picom = {
-    enable = true;
-    fade            = true;
-    shadow          = true;
-    fadeDelta       = 2;
+    clipmenu = {
+      enable = true;
+    };
+
+    dropbox = {
+      enable = true;
+    };
+
+    dunst = {
+      enable = true;
+    };
   };
 
   services.screen-locker = {

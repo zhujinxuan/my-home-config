@@ -1,2 +1,5 @@
 result
 xss
+nixpkgs.lock.json
+pkgs.json
+machine.nix

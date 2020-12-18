@@ -9,13 +9,4 @@ let
                  import ./darwin/home.nix arg
                else {};
 in
-  with orig; orig //{
-    home = with home; home//{
-      file = file // {
-        zsh-shared = {
-          target = "./zsh-config/common-zshrc.zsh";
-          source = ./home-files/common-zshrc.zsh;
-        };
-      };
-    };
-  }
+orig

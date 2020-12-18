@@ -15,6 +15,21 @@
   # when a new Home Manager release introduces backwards
   # incompatible changes.
   #
+  programs.zsh = {
+    enable = true;
+    plugins = [
+      {
+        name = "darwin-zsh";
+        file = "darwin.zsh";
+        src = ../darwin-zsh;
+      }
+      {
+        name = "common-zsh-config";
+        file = "common-zshrc.zsh";
+        src = ../zsh-common;
+      }
+    ];
+  };
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.

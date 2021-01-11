@@ -92,8 +92,9 @@ export PATH=$HOME/.cargo/bin:$PATH
 
 export NIX_GHC_LIBDIR=$(ghc --print-libdir)
 
-alias mamp-php='/Applications/MAMP/bin/php/php7.4.9/bin/php'
+alias mamp-php='/Applications/MAMP/bin/php/php7.4.12/bin/php'
 alias mamp-mysqldump=/Applications/MAMP/Library/bin/mysqldump
 alias mamp-mysql=/Applications/MAMP/Library/bin/mysql
 alias ghcide=$HOME/.local/bin/ghcide
 eval "$(direnv hook zsh)"
+export KALEIDOSCOPE_DIR=${HOME}/git/Kaleidoscope

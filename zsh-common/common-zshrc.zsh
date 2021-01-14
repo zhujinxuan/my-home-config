@@ -185,9 +185,9 @@ bindkey "\eq" push-line-or-edit
 bindkey "\C-o" accept-line-and-down-history
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# fi
 setopt clobber
 
 backup_decrypt() {

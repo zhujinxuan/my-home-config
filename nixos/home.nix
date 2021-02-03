@@ -36,6 +36,11 @@
     size = 128;
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.chromium = {
     enable = true;
   };

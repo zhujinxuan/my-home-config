@@ -14,13 +14,23 @@
   # paths it should manage.
   home.username = "jinxuanzhu";
   home.homeDirectory = "/Users/jinxuanzhu";
-  home.file = {};
+  home.file = {
+    tridactyl = {
+      source = ../home-files/tridactylrc;
+      target = ".tridactylrc";
+    };
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
   # incompatible changes.
   #
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     plugins = [
@@ -50,7 +60,9 @@
       editor = {
         keymap = "vi";
         dotExpansion = true;
+        promptContext = true;
       };
+      utility.safeOps = false;
       pmodules = [
         "archive"
         "autosuggestions" 
@@ -76,6 +88,8 @@
         theme = "powerlevel10k";
         pwdLength = "long";
       };
+      tmux.itermIntegration = true;
+      autosuggestions.color = "fg=blue";
     };
   };
   # You can update Home Manager without changing this value. See

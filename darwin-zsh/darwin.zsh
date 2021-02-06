@@ -83,7 +83,6 @@ export PATH=$PATH:$HOME/.cabal/bin/:$HOME/.local/bin/
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 export GPG_TTY=$(tty)
-export HOMEBREW_GITHUB_API_TOKEN="6404178e2e15cd849d2bf4e45ee01c8516c1420c"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -98,4 +97,6 @@ alias mamp-mysqldump=/Applications/MAMP/Library/bin/mysqldump
 alias mamp-mysql=/Applications/MAMP/Library/bin/mysql
 alias ghcide=$HOME/.local/bin/ghcide
 # eval "$(direnv hook zsh)"
-export KALEIDOSCOPE_DIR=${HOME}/git/Kaleidoscope
+# export KALEIDOSCOPE_DIR=${HOME}/git/Kaleidoscope
+
+source ./sensitive.zsh

@@ -8,6 +8,14 @@
     fira-code
     fira-code-symbols
     pre-commit
+    cabal-install
+    ghc
+    haskell-language-server
+    pandoc
+    languagetool
+    # Rust packages
+    ripgrep
+    bat
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -46,7 +54,7 @@
       }
     ];
     profileExtra = "
-  export BROWSER='open'
+  export  BROWSER='open'
   # Nix
   if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
       . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -57,6 +65,16 @@
 ";
     prezto = {
       enable = true;
+      extraConfig = "
+  export  BROWSER='open'
+  # Nix
+  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  elif [ -e \"$HOME/.nix-profile/etc/profile.d/nix.sh\" ]; then
+      . $HOME/.nix-profile/etc/profile.d/nix.sh
+  fi
+  # End Nix
+";
       editor = {
         keymap = "vi";
         dotExpansion = true;

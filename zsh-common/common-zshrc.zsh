@@ -183,7 +183,8 @@ bindkey "\C-r" history-incremental-pattern-search-backward
 bindkey "\C-n" history-incremental-pattern-search-forward
 bindkey "\eq" push-line-or-edit
 bindkey "\C-o" accept-line-and-down-history
-export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+# export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 #     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"

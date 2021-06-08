@@ -27,6 +27,14 @@
       source = ../home-files/tridactylrc;
       target = ".tridactylrc";
     };
+    yabai = {
+      source = ../home-files/yabairc;
+      target = ".yabairc";
+    };
+    skhd = {
+      source = ../home-files/skhdrc;
+      target = ".skhdrc";
+    };
   };
 
   # This value determines the Home Manager release that your

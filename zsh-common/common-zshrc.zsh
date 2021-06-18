@@ -146,6 +146,7 @@ ptyless () {
 
 #程序关联
 alias -s js='emacsclient -n'
+alias -s ts='emacsclient -n'
 alias -s hs='emacsclient -n'
 alias -s php='emacsclient -n'
 alias -s ps=zathura

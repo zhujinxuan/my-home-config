@@ -4,3 +4,4 @@ nixpkgs.lock.json
 pkgs.json
 machine.nix
 */sensitive.zsh
+.DS_Store

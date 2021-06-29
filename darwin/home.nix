@@ -16,6 +16,7 @@ in
     cabal-install
     ghc
     haskell-language-server
+    neuron-notes
     pandoc
     languagetool
     # Rust packages

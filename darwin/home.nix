@@ -67,6 +67,11 @@ in
         file = "common-zshrc.zsh";
         src = ../zsh-common;
       }
+      {
+        name = "per-directory-history";
+        file = "per-directory-history.zsh";
+        src = ../per-directory-history;
+      }
     ];
     profileExtra = "
   export  BROWSER='open'

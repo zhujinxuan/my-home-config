@@ -1,0 +1,3 @@
+[submodule "per-directory-history"]
+	path = per-directory-history
+	url = git@github.com:jimhester/per-directory-history.git

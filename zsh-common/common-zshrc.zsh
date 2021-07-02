@@ -29,21 +29,6 @@ setopt PUSHD_IGNORE_DUPS
 #setopt HIST_IGNORE_SPACE
 #}}}
 
-#每个目录使用独立的历史纪录{{{
-HISTDIR="$HOME/.zhistory"
-[[ ! -d "$HISTDIR" ]] && mkdir -p "$HISTDIR"
-HISTFILE="$HISTDIR/${PWD//\//:}"
-chpwd() {
-#   fc -W                                       # write current history  file
-#   "setopt INC_APPEND_HISTORY"
-    HISTFILE="$HISTDIR/${PWD//\//:}"            # set new history file
-    [[ ! -e "$HISTFILE" ]] && touch $HISTFILE
-    local ohistsize=$HISTSIZE
-        HISTSIZE=0                              # Discard previous dir's history
-        HISTSIZE=$ohistsize                     # Prepare for new dir's history
-    fc -R                                       # read from current histfile
-}
-
 #杂项 {{{
 #允许在交互模式中使用注释  例如：
 #cmd #这是注释

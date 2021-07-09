@@ -1,3 +1,6 @@
 [submodule "per-directory-history"]
 	path = per-directory-history
 	url = git@github.com:jimhester/per-directory-history.git
+[submodule "emacs-osx"]
+	path = emacs-osx
+	url = https://github.com/sagittaros/emacs-osx/

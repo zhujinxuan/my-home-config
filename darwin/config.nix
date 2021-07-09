@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   allowUnfree = true;
-  allowBroken = true;
+  nix.package = pkgs.nixUnstable;
 }

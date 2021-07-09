@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
-let emacs-osx = import (fetchTarball {
-      url = https://github.com/sagittaros/emacs-osx/archive/refs/tags/built.tar.gz;
-      sha256 = "1qpwqvlnsnhrcli9i62m6zacjy86mrf1gkar9l4zpj1hxyqj6sn7";
-    }) ;
+let
+  emacs-osx = import ../emacs-osx;
 in
 {
   # Let Home Manager install and manage itself.
@@ -14,15 +12,21 @@ in
     fira-code-symbols
     pre-commit
     cabal-install
+    cabel2nix
     ghc
     haskell-language-server
-    neuron-notes
     pandoc
     languagetool
     # Rust packages
+    fd
     ripgrep
     bat
+    rustc
+    cargo
+    rustfmt
+    # Apps
     emacs-osx.emacsOsxNativeTile
+    # audacity
   ];
 
   # Home Manager needs a bit of information about you and the

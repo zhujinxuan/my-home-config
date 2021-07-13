@@ -4,3 +4,6 @@
 [submodule "emacs-osx"]
 	path = emacs-osx
 	url = https://github.com/sagittaros/emacs-osx/
+[submodule "neuron-srid"]
+	path = neuron-srid
+	url = https://github.com/srid/neuron

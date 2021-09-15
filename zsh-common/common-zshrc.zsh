@@ -34,10 +34,6 @@ setopt PUSHD_IGNORE_DUPS
 #cmd #这是注释
 setopt INTERACTIVE_COMMENTS
 
-#启用自动 cd，输入目录名回车进入目录
-#稍微有点混乱，不如 cd 补全实用
-#setopt AUTO_CD
-
 #扩展路径
 #/v/c/p/p => /var/cache/pacman/pkg
 setopt complete_in_word
@@ -113,22 +109,6 @@ zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directori
 #}}}
 
 compdef '_command_names -e' notify
-
-ptyrun () {
-    local ptyname=pty-$$
-    zmodload zsh/zpty
-    zpty $ptyname ${1+"$@"}
-    if [[ ! -t 1 ]]; then
-        setopt local_traps
-        trap '' INT
-    fi
-    zpty -r $ptyname
-    zpty -d $ptyname
-}
-ptyless () {
-    ptyrun $@ | less
-}
-
 #程序关联
 alias -s js='emacsclient -n'
 alias -s ts='emacsclient -n'
@@ -140,18 +120,9 @@ alias -s eps=zathura
 alias -s pl=perl
 alias -s py=python
 
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR='emacsclient -n'
+export VISUAL='emacsclient -n'
 
-## Colorful Less {{{
-export LESS_TERMCAP_md=$'\E[1;31m'      #bold1
-export LESS_TERMCAP_mb=$'\E[1;31m'
-export LESS_TERMCAP_me=$'\E[m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'  #search highlight
-export LESS_TERMCAP_se=$'\E[m'
-export LESS_TERMCAP_us=$'\E[1;2;32m'    #bold2
-export LESS_TERMCAP_ue=$'\E[m'
-export LESS="-M -i -R --shift 5"
 export LESSCHARSET=utf-8
 
 autoload -U zargs
@@ -169,12 +140,8 @@ bindkey "\C-r" history-incremental-pattern-search-backward
 bindkey "\C-n" history-incremental-pattern-search-forward
 bindkey "\eq" push-line-or-edit
 bindkey "\C-o" accept-line-and-down-history
-# export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-#     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
 setopt clobber
 
 backup_decrypt() {
@@ -189,5 +156,4 @@ backup_decrypt() {
 }
 
 alias bd='backup_decrypt'
-
-alias dot-git='git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias killEmacs="emacsclient --eval '(let (kill-emacs-hook) (kill-emacs))'"

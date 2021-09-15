@@ -2,8 +2,9 @@
 
 let
   emacs-osx = import ../emacs-osx;
-in
-{
+  srid-neuron = import ../neuron-srid;
+  emanote = import ../emanote;
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -12,21 +13,29 @@ in
     fira-code-symbols
     pre-commit
     cabal-install
-    cabel2nix
+    cabal2nix
     ghc
     haskell-language-server
     pandoc
     languagetool
+    irony-server # C server for emacs
     # Rust packages
     fd
     ripgrep
     bat
     rustc
+    rust-analyzer
     cargo
     rustfmt
     # Apps
     emacs-osx.emacsOsxNativeTile
-    # audacity
+    srid-neuron.default
+    emanote.default
+    nixfmt
+    enchant2
+    ispell
+    aspellDicts.en
+    aspell
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -77,28 +86,12 @@ in
         src = ../per-directory-history;
       }
     ];
-    profileExtra = "
-  export  BROWSER='open'
-  # Nix
-  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-  elif [ -e \"$HOME/.nix-profile/etc/profile.d/nix.sh\" ]; then
-      . $HOME/.nix-profile/etc/profile.d/nix.sh
-  fi
-  # End Nix
-";
+    profileExtra =
+      "\n  export  BROWSER='open'\n  # Nix\n  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then\n      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'\n  elif [ -e \"$HOME/.nix-profile/etc/profile.d/nix.sh\" ]; then\n      . $HOME/.nix-profile/etc/profile.d/nix.sh\n  fi\n  # End Nix\n";
     prezto = {
       enable = true;
-      extraConfig = "
-  export  BROWSER='open'
-  # Nix
-  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-  elif [ -e \"$HOME/.nix-profile/etc/profile.d/nix.sh\" ]; then
-      . $HOME/.nix-profile/etc/profile.d/nix.sh
-  fi
-  # End Nix
-";
+      extraConfig =
+        "\n  export  BROWSER='open'\n  # Nix\n  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then\n      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'\n  elif [ -e \"$HOME/.nix-profile/etc/profile.d/nix.sh\" ]; then\n      . $HOME/.nix-profile/etc/profile.d/nix.sh\n  fi\n  # End Nix\n";
       editor = {
         keymap = "vi";
         dotExpansion = true;
@@ -107,23 +100,23 @@ in
       utility.safeOps = false;
       pmodules = [
         "archive"
-        "autosuggestions" 
-        "environment" 
-        "terminal" 
-        "editor" 
-        "history" 
-        "directory" 
-        "fasd" 
-        "spectrum" 
-        "utility" 
-        "ssh" 
-        "completion" 
-        "git" 
-        "syntax-highlighting" 
-        "history-substring-search" 
-        "node" 
-        "homebrew" 
-        "haskell" 
+        "autosuggestions"
+        "environment"
+        "terminal"
+        "editor"
+        "history"
+        "directory"
+        "fasd"
+        "spectrum"
+        "utility"
+        "ssh"
+        "completion"
+        "git"
+        "syntax-highlighting"
+        "history-substring-search"
+        "node"
+        "homebrew"
+        "haskell"
         "prompt"
       ];
       prompt = {

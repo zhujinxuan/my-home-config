@@ -112,8 +112,9 @@ shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
 # ctrl + alt - 3  : yabai -m display --focus 3
 
 # send window to monitor and follow focus
-shift + cmd - c  : yabai -m window --display next || yabai -m window --display first; \
+shift + cmd - r  : yabai -m window --display next || yabai -m window --display first; \
                    yabai -m display --focus next || yabai -m display --focus first
+shift + cmd - c  : yabai -m window --close
 # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
 
 # move floating window

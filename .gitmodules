@@ -7,3 +7,6 @@
 [submodule "neuron-srid"]
 	path = neuron-srid
 	url = https://github.com/srid/neuron
+[submodule "emanote"]
+	path = emanote
+	url = git@github.com:srid/emanote.git

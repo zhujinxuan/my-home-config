@@ -25,6 +25,7 @@ in {
     bat
     rustc
     rust-analyzer
+    obsidian
     cargo
     rustfmt
     # Apps

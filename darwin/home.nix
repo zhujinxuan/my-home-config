@@ -4,8 +4,9 @@ let
   emacs-osx-rc = builtins.fetchTarball
     "https://github.com/sagittaros/emacs-osx/archive/refs/tags/built.tar.gz";
   emacs-osx = import emacs-osx-rc;
-  srid-neuron = import ../neuron-srid;
-  emanote = import ../emanote;
+  neuronSrc = builtins.fetchTarball
+    "https://github.com/srid/neuron/archive/master.tar.gz";
+  srid-neuron = import neuronSrc;
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -34,7 +35,6 @@ in {
     # Apps
     emacs-osx.emacsOsxNativeTile
     srid-neuron.default
-    emanote.default
     nixfmt
     enchant2
     ispell

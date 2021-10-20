@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 let
-  emacs-osx = import ../emacs-osx;
+  emacs-osx-rc = builtins.fetchTarball
+    "https://github.com/sagittaros/emacs-osx/archive/refs/tags/built.tar.gz";
+  emacs-osx = import emacs-osx-rc;
   srid-neuron = import ../neuron-srid;
   emanote = import ../emanote;
 in {
@@ -9,12 +11,14 @@ in {
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    git
     fira-code
     fira-code-symbols
     pre-commit
     cabal-install
     cabal2nix
     ghc
+    fzf
     haskell-language-server
     pandoc
     languagetool
@@ -25,7 +29,6 @@ in {
     bat
     rustc
     rust-analyzer
-    obsidian
     cargo
     rustfmt
     # Apps

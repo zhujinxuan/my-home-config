@@ -13,37 +13,43 @@ in {
 
   home.packages = with pkgs; [
     git
-    fira-code
-    fira-code-symbols
-    pre-commit
+    fzf
+    irony-server # C server for emacs
+    # Haskell Packages
     cabal-install
     cabal2nix
     ghc
-    fzf
     haskell-language-server
     pandoc
-    languagetool
-    irony-server # C server for emacs
+    # nix packages
+    nix-index
     # Rust packages
     fd
     ripgrep
-    bat
     rustc
     rust-analyzer
     cargo
+    cargo-edit
+    cargo-audit
     rustfmt
     # Apps
     emacs-osx.emacsOsxNativeTile
     srid-neuron.default
     nixfmt
-    enchant2
-    ispell
-    aspellDicts.en
-    aspell
   ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
+  programs.bat = {
+    enable = true;
+    config = { theme = "TwoDark"; };
+  };
+
+  programs.broot = {
+    enable = true;
+    modal = true;
+  };
+
   home.username = "jinxuanzhu";
   home.homeDirectory = "/Users/jinxuanzhu";
   home.file = {

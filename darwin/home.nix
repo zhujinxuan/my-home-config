@@ -17,37 +17,53 @@ in {
     irony-server # C server for emacs
     # Haskell Packages
     cabal-install
-    cabal2nix
+    # cabal2nix
+    cabal2nix-unwrapped
     ghc
     haskell-language-server
     pandoc
+    hledger
+    hledger-web
+    hledger-ui
     # nix packages
     nix-index
     # Rust packages
+    ruplacer
     fd
     ripgrep
     rustc
     rust-analyzer
     cargo
-    cargo-edit
-    cargo-audit
+    # cargo-generate
+    # cargo-edit
+    # cargo-audit
     rustfmt
     # Apps
     emacs-osx.emacsOsxNativeTile
     srid-neuron.default
     nixfmt
+    wget
+    pass
+    # fonts
+    rubik
   ];
+
+  programs.password-store = {
+    enable = true;
+    settings = { PASSWORD_STORE_KEY = "0x98311E6463708C2B"; };
+  };
+
+  programs.gpg = { enable = true; };
+
+  programs.mu = { enable = true; };
+
+  programs.mbsync = { enable = true; };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs.bat = {
     enable = true;
     config = { theme = "TwoDark"; };
-  };
-
-  programs.broot = {
-    enable = true;
-    modal = true;
   };
 
   home.username = "jinxuanzhu";
@@ -96,6 +112,7 @@ in {
         src = ../per-directory-history;
       }
     ];
+    enableCompletion = false;
     profileExtra =
       "\n  export  BROWSER='open'\n  # Nix\n  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then\n      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'\n  elif [ -e \"$HOME/.nix-profile/etc/profile.d/nix.sh\" ]; then\n      . $HOME/.nix-profile/etc/profile.d/nix.sh\n  fi\n  # End Nix\n";
     prezto = {
@@ -108,6 +125,7 @@ in {
         promptContext = true;
       };
       utility.safeOps = false;
+
       pmodules = [
         "archive"
         "autosuggestions"

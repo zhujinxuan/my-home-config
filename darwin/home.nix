@@ -66,6 +66,8 @@ in {
     config = { theme = "TwoDark"; };
   };
 
+  programs.exa = { enable = true; };
+
   home.username = "jinxuanzhu";
   home.homeDirectory = "/Users/jinxuanzhu";
   home.file = {

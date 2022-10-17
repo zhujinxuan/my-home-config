@@ -157,4 +157,4 @@ backup_decrypt() {
 
 alias bd='backup_decrypt'
 alias killEmacs="emacsclient --eval '(let (kill-emacs-hook) (kill-emacs))'"
-export LEDGER_FILE="$HOME/hledger/2022.journal"
+export LEDGER_FILE="$HOME/hledger/hledger.journal"

@@ -39,6 +39,7 @@ in {
     # cargo-audit
     rustfmt
     # Apps
+    # emacs-osx.emacsOsxNativeTile
     emacs-osx.emacsOsxNativeTile
     srid-neuron.default
     nixfmt

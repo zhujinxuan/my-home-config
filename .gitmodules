@@ -3,7 +3,7 @@
 	url = git@github.com:jimhester/per-directory-history.git
 [submodule "emacs-osx"]
 	path = emacs-osx
-	url = https://github.com/sagittaros/emacs-osx/
+	url = git@github.com:zhujinxuan/emacs-osx.git
 [submodule "neuron-srid"]
 	path = neuron-srid
 	url = https://github.com/srid/neuron

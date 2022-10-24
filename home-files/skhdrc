@@ -101,7 +101,7 @@ alt + cmd - n : index="$(yabai -m query --spaces --display | jq 'map(select(."na
 
 # fast focus desktop
 alt + cmd - t : yabai -m space --focus recent
-shift + cmd - t : yabai -m window  --focus recent
+shift + cmd - t : yabai -m display  --focus recent
 
 # send window to desktop and follow focus
 shift + cmd - z : yabai -m window --space next; yabai -m space --focus next

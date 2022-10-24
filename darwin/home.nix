@@ -2,7 +2,7 @@
 
 let
   emacs-osx-rc = builtins.fetchTarball
-    "https://github.com/sagittaros/emacs-osx/archive/refs/tags/built.tar.gz";
+    "https://github.com/zhujinxuan/emacs-osx/archive/refs/tags/built.tar.gz";
   emacs-osx = import emacs-osx-rc;
   neuronSrc = builtins.fetchTarball
     "https://github.com/srid/neuron/archive/master.tar.gz";

@@ -2,11 +2,8 @@
 
 let
   emacs-osx-rc = builtins.fetchTarball
-    "https://github.com/zhujinxuan/emacs-osx/archive/refs/tags/built.tar.gz";
+    "https://github.com/nequissimus/emacs-osx/archive/refs/tags/built.tar.gz";
   emacs-osx = import emacs-osx-rc;
-  neuronSrc = builtins.fetchTarball
-    "https://github.com/srid/neuron/archive/master.tar.gz";
-  srid-neuron = import neuronSrc;
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -39,12 +36,9 @@ in {
     # cargo-audit
     rustfmt
     # Apps
-    # emacs-osx.emacsOsxNativeTile
     emacs-osx.emacsOsxNativeTile
-    srid-neuron.default
     nixfmt
     wget
-    pass
     # fonts
     rubik
   ];
@@ -54,11 +48,9 @@ in {
     settings = { PASSWORD_STORE_KEY = "0x98311E6463708C2B"; };
   };
 
-  programs.gpg = { enable = true; };
-
-  programs.mu = { enable = true; };
-
-  programs.mbsync = { enable = true; };
+  # programs.gpg = { enable = true; };
+  # programs.mu = { enable = true; };
+  # programs.mbsync = { enable = true; };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -94,6 +86,17 @@ in {
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    stdlib = ''
+      use_nvm() {
+        local node_version=$1
+
+        nvm_sh=~/.nvm/nvm.sh
+        if [[ -e $nvm_sh ]]; then
+          source $nvm_sh
+          nvm use $node_version
+        fi
+      }
+    '';
   };
 
   programs.zsh = {

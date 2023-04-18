@@ -43,6 +43,11 @@ in {
     rubik
   ];
 
+  programs.skim = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.password-store = {
     enable = true;
     settings = { PASSWORD_STORE_KEY = "0x98311E6463708C2B"; };
@@ -57,6 +62,7 @@ in {
   programs.bat = {
     enable = true;
     config = { theme = "TwoDark"; };
+    extraPackages = [ pkgs.bat-extras.batgrep ];
   };
 
   programs.exa = { enable = true; };

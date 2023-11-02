@@ -39,8 +39,11 @@ in {
     emacs-osx.emacsOsxNativeTile
     nixfmt
     wget
-    # fonts
-    rubik
+    sshfs-fuse
+    # Dev tools
+    pdftk
+    gnused
+    coreutils
   ];
 
   programs.skim = {
@@ -62,10 +65,10 @@ in {
   programs.bat = {
     enable = true;
     config = { theme = "TwoDark"; };
-    extraPackages = [ pkgs.bat-extras.batgrep ];
+    extraPackages = [ pkgs.bat-extras.batgrep pkgs.bat-extras.batman ];
   };
 
-  programs.exa = { enable = true; };
+  programs.eza = { enable = true; };
 
   home.username = "jinxuanzhu";
   home.homeDirectory = "/Users/jinxuanzhu";
@@ -73,14 +76,6 @@ in {
     tridactyl = {
       source = ../home-files/tridactylrc;
       target = ".tridactylrc";
-    };
-    yabai = {
-      source = ../home-files/yabairc;
-      target = ".yabairc";
-    };
-    skhd = {
-      source = ../home-files/skhdrc;
-      target = ".skhdrc";
     };
   };
 
@@ -148,7 +143,6 @@ in {
         "directory"
         "fasd"
         "spectrum"
-        "utility"
         "ssh"
         "completion"
         "git"

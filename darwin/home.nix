@@ -8,6 +8,12 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.git = {
+    enable = true;
+    userName = "zhujinxuan";
+    userEmail = "zhujinxuan@gmail.com";
+  };
+
   home.packages = with pkgs; [
     git
     fzf
@@ -145,7 +151,6 @@ in {
         "spectrum"
         "ssh"
         "completion"
-        "git"
         "syntax-highlighting"
         "history-substring-search"
         "node"

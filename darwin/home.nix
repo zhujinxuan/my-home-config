@@ -27,7 +27,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    git
     fzf
     irony-server # C server for emacs
     # Haskell Packages
@@ -37,21 +36,12 @@ in {
     ghc
     haskell-language-server
     pandoc
-    hledger
-    hledger-web
-    hledger-ui
     # nix packages
     nix-index
     # Rust packages
     ruplacer
     fd
     ripgrep
-    rustc
-    rust-analyzer
-    cargo
-    # cargo-generate
-    # cargo-edit
-    # cargo-audit
     rustfmt
     # Apps
     emacs-osx.emacsOsxNativeTile

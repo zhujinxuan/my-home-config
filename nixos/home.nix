@@ -4,12 +4,29 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.git = {
+    enable = true;
+    userName = "zhujinxuan";
+    userEmail = "zhujinxuan@gmail.com";
+    delta = {
+      enable = true;
+      options = {
+        decorations = {
+          commit-decoration-style = "bold yellow box ul";
+          file-decoration-style = "none";
+          file-style = "bold yellow ul";
+        };
+        features = "decorations";
+        whitespace-error-style = "22 reverse";
+      };
+    };
+  };
+
   # fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     touchegg
     fira-code
     fira-code-symbols
-    # haskellPackages.yeganesh
     # nerdfonts
   ];
 
@@ -20,13 +37,9 @@
     };
   };
 
-  programs.i3status = {
-    enable = true;
-  };
-
   programs.firefox = {
     enable = true;
-    # enableAdobeFlash = true;
+    enableAdobeFlash = true;
   };
 
   # xsession config
@@ -41,13 +54,11 @@
     enableZshIntegration = true;
   };
 
-  programs.chromium = {
-    enable = true;
-  };
+  programs.chromium = { enable = true; };
 
   programs.urxvt = {
-    enable= true;
-    fonts =  [ "xft:Droid Sans Mono Nerd Font:size=9" ];
+    enable = true;
+    fonts = [ "xft:Droid Sans Mono Nerd Font:size=9" ];
     keybindings = {
       "M-c" = "perl:clipboard:copy";
       "M-v" = "perl:clipboard:paste";
@@ -59,16 +70,16 @@
       background = "[80]#000000";
       depth = 32;
       cursorColor = "#afbfbf";
-      "perl-ext-common" = with builtins; concatStringsSep "," [
-        "default"
-        "clipboard"
-        "url-select"
-        "keyboard-select"
-        "tabbed"
-      ];
-      "perl-lib" =  with builtins; concatStringsSep "," [
-        "${pkgs.urxvt_perls}/lib/urxvt/perl"
-      ];
+      "perl-ext-common" = with builtins;
+        concatStringsSep "," [
+          "default"
+          "clipboard"
+          "url-select"
+          "keyboard-select"
+          "tabbed"
+        ];
+      "perl-lib" = with builtins;
+        concatStringsSep "," [ "${pkgs.urxvt_perls}/lib/urxvt/perl" ];
       "urlLauncher" = "firefox";
       "underLineURLs" = true;
       "underButtons" = 1;
@@ -80,42 +91,28 @@
   services = {
     picom = {
       enable = true;
-      fade            = true;
-      shadow          = true;
-      fadeDelta       = 2;
+      fade = true;
+      shadow = true;
+      fadeDelta = 2;
     };
 
-    clipmenu = {
-      enable = true;
-    };
+    clipmenu = { enable = true; };
 
-    dropbox = {
-      enable = true;
-    };
+    dropbox = { enable = true; };
 
-    dunst = {
-      enable = true;
-    };
+    dunst = { enable = true; };
   };
 
-  services.screen-locker = {
-    enable = true;
-    lockCmd =  "${pkgs.i3lock}/bin/i3lock -n -c 111111 -t";
-  };
-
-  systemd.user = {
-    startServices = true;
-  };
+  systemd.user = { startServices = true; };
 
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      # "application/x-desktop" = ["run-desktop.desktop"];
-      "x-scheme-handler/http"=["firefox.desktop"];
-      "x-scheme-handler/https"=["firefox.desktop"];
-      "text/html"=["firefox.desktop"];
-      "x-scheme-handler/about"=["firefox.desktop"];
-      "x-scheme-handler/unknown"=["firefox.desktop"];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
     };
   };
 
@@ -127,5 +124,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "20.03";
+  home.stateVersion = "21.03";
 }

@@ -11,18 +11,16 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: {
-    homeConfigurations."darwin" = let
-      system = "x86_64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    homeConfigurations."jinxuanzhu" =
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-darwin";
 
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [ ./common.nix ./darwin/home.nix ];
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./common.nix ./darwin/home.nix ];
 
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-    };
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
   };
 }

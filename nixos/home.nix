@@ -4,29 +4,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.git = {
-    enable = true;
-    userName = "zhujinxuan";
-    userEmail = "zhujinxuan@gmail.com";
-    delta = {
-      enable = true;
-      options = {
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-decoration-style = "none";
-          file-style = "bold yellow ul";
-        };
-        features = "decorations";
-        whitespace-error-style = "22 reverse";
-      };
-    };
-  };
-
   # fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     touchegg
     fira-code
     fira-code-symbols
+    httpie
     # nerdfonts
   ];
 
@@ -37,21 +20,11 @@
     };
   };
 
-  programs.firefox = {
-    enable = true;
-    enableAdobeFlash = true;
-  };
-
   # xsession config
   xsession.pointerCursor = {
     name = "Vanilla-DMZ";
     package = pkgs.vanilla-dmz;
     size = 128;
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
   };
 
   programs.chromium = { enable = true; };
@@ -87,6 +60,19 @@
       "pasteCommand" = "xclip -o -selection clipboard";
     };
   };
+
+  programs.zsh.plugins = [
+    {
+      name = "common-zsh-config";
+      file = "common-zshrc.zsh";
+      src = ../zsh-common;
+    }
+    {
+      name = "per-directory-history";
+      file = "per-directory-history.zsh";
+      src = ../per-directory-history;
+    }
+  ];
 
   services = {
     picom = {

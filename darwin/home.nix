@@ -6,6 +6,9 @@
 
   home.packages = with pkgs; [
     fzf
+    hledger
+    hledger-ui
+    hledger-web
     irony-server # C server for emacs
     # Haskell Packages
     cabal-install

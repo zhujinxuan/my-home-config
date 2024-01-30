@@ -28,6 +28,7 @@
     wget
     sshfs-fuse
     fasd
+    jwt-cli
     # Dev tools
     pdftk
     gnused

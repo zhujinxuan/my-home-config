@@ -22,7 +22,9 @@
 
   programs.password-store = {
     enable = true;
-    settings = { PASSWORD_STORE_KEY = "0x98311E6463708C2B"; };
+    settings = {
+      PASSWORD_STORE_KEY = "6EBC7887A28C634A0CD38D8F590FE0D59AD6E8BE";
+    };
   };
 
   # Home Manager needs a bit of information about you and the

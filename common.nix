@@ -92,7 +92,6 @@
         "syntax-highlighting"
         "history-substring-search"
         "node"
-        "homebrew"
         "haskell"
         "prompt"
       ];

@@ -52,6 +52,7 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    nix-direnv.enable = true;
     stdlib = ''
       use_nvm() {
         local node_version=$1

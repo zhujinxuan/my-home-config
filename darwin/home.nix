@@ -30,6 +30,7 @@
     fasd
     jwt-cli
     # Dev tools
+    oq
     pdftk
     gnused
     coreutils

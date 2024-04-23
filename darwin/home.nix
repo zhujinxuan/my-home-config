@@ -39,6 +39,9 @@
     unar
     httpie
     rsync
+    socat
+    tcpdump
+    wireshark
   ];
 
   home.username = "jinxuanzhu";

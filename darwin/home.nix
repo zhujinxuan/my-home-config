@@ -12,7 +12,6 @@
     irony-server # C server for emacs
     # Haskell Packages
     cabal-install
-    # cabal2nix
     cabal2nix-unwrapped
     ghc
     haskell-language-server
@@ -29,6 +28,8 @@
     sshfs-fuse
     fasd
     jwt-cli
+    # Python
+    pyright
     # Dev tools
     devenv
     oq

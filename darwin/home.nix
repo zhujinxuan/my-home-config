@@ -23,7 +23,7 @@
     fd
     ripgrep
     rustfmt
-    nixfmt
+    nixfmt-rfc-style
     wget
     sshfs-fuse
     fasd
@@ -42,6 +42,7 @@
     socat
     tcpdump
     wireshark
+    imagemagick
   ];
 
   home.username = "jinxuanzhu";

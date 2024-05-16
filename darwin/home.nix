@@ -28,6 +28,7 @@
     sshfs-fuse
     fasd
     jwt-cli
+    qmk
     # Python
     pyright
     # Dev tools
@@ -43,6 +44,7 @@
     tcpdump
     wireshark
     imagemagick
+    ghostscript
   ];
 
   home.username = "jinxuanzhu";

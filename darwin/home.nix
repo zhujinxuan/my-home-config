@@ -31,6 +31,7 @@
     fasd
     jwt-cli
     qmk
+    bottom
     # Python
     pyright
     # Dev tools
@@ -47,6 +48,7 @@
     wireshark
     imagemagick
     ghostscript
+    findutils
   ];
 
   home.username = "jinxuanzhu";

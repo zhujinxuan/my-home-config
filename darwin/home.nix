@@ -23,6 +23,8 @@
     fd
     ripgrep
     rustfmt
+    fselect
+    dua
     nixfmt-rfc-style
     wget
     sshfs-fuse

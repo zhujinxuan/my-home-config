@@ -43,3 +43,4 @@ backup_decrypt() {
 
 alias killEmacs="emacsclient --eval '(let (kill-emacs-hook) (kill-emacs))'"
 export LEDGER_FILE="$HOME/hledger/hledger.journal"
+export SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt

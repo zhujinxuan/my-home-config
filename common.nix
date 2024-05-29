@@ -1,6 +1,57 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    fzf
+    # C server for emacs
+    irony-server
+    # Haskell Packages
+    cabal-install
+    cabal2nix-unwrapped
+    ghc
+    haskell-language-server
+    pandoc
+    hledger
+    hledger-ui
+    hledger-web
+    # nix packages
+    nix-index
+    # Rust packages
+    ruplacer
+    fd
+    ripgrep
+    rustfmt
+    fselect
+    dua
+    nixfmt-rfc-style
+    fasd
+    jwt-cli
+    qmk
+    bottom
+    # Python
+    pyright
+    # Dev tools
+    devenv
+    oq
+    pdftk
+    gnused
+    coreutils
+    httpie
+    rsync
+    socat
+    imagemagick
+    # Network
+    tcpdump
+    wireshark
+    ghostscript
+    findutils
+    # Security
+    age
+    ssh-to-age
+    neovim
+  ];
 
   programs.git = {
     enable = true;
@@ -27,43 +78,32 @@
     };
   };
 
-  programs.gpg = { enable = true; };
+  programs.gpg = {
+    enable = true;
+  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs.bat = {
     enable = true;
-    config = { theme = "TwoDark"; };
-    extraPackages = with pkgs.bat-extras; [ batgrep batman batdiff batwatch ];
+    config = {
+      theme = "TwoDark";
+    };
+    extraPackages = with pkgs.bat-extras; [
+      batgrep
+      batman
+      batdiff
+      batwatch
+    ];
   };
 
-  programs.eza = { enable = true; };
+  programs.eza = {
+    enable = true;
+  };
 
   home.file.tridactyl = {
     source = ./home-files/tridactylrc;
     target = ".tridactylrc";
-  };
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-    stdlib = ''
-      use_nvm() {
-        local node_version=$1
-
-        nvm_sh=~/.nvm/nvm.sh
-        if [[ -e $nvm_sh ]]; then
-          source $nvm_sh
-          nvm use $node_version
-        fi
-      }
-    '';
   };
 
   programs.zsh = {
@@ -113,7 +153,10 @@
       "egenerationmarketing.com" = {
         hostname = "egenerationmarketing.com";
         user = "root";
-        identityFile = [ "~/.ssh/egm-aws.pem" "~/.ssh/id_rsa" ];
+        identityFile = [
+          "~/.ssh/egm-aws.pem"
+          "~/.ssh/id_rsa"
+        ];
         identitiesOnly = true;
       };
       "github.com" = {
@@ -129,5 +172,4 @@
       };
     };
   };
-
 }

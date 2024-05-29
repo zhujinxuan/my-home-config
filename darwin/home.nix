@@ -5,50 +5,9 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    fzf
-    hledger
-    hledger-ui
-    hledger-web
-    irony-server # C server for emacs
-    # Haskell Packages
-    cabal-install
-    cabal2nix-unwrapped
-    ghc
-    haskell-language-server
-    pandoc
-    # nix packages
-    nix-index
-    # Rust packages
-    ruplacer
-    fd
-    ripgrep
-    rustfmt
-    fselect
-    dua
-    nixfmt-rfc-style
-    wget
     sshfs-fuse
-    fasd
-    jwt-cli
-    qmk
-    bottom
-    # Python
-    pyright
-    # Dev tools
-    devenv
-    oq
-    pdftk
-    gnused
-    coreutils
     unar
-    httpie
-    rsync
-    socat
-    tcpdump
-    wireshark
-    imagemagick
-    ghostscript
-    findutils
+    wget
   ];
 
   home.username = "jinxuanzhu";
@@ -76,6 +35,28 @@
       src = ../per-directory-history;
     }
   ];
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    stdlib = ''
+      use_nvm() {
+        local node_version=$1
+
+        nvm_sh=~/.nvm/nvm.sh
+        if [[ -e $nvm_sh ]]; then
+          source $nvm_sh
+          nvm use $node_version
+        fi
+      }
+    '';
+  };
 
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version

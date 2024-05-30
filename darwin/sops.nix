@@ -11,12 +11,18 @@
 
   sops = {
     age.keyFile = "/Users/jinxuanzhu/.config/sops/age/keys.txt";
-    defaultSopsFile = ../secrets/secrets.yaml;
-    # secrets.id_rsa = {
-    #   # %r gets replaced with a runtime directory, use %% to specify a '%'
-    #   # sign. Runtime dir is $XDG_RUNTIME_DIR on linux and $(getconf
-    #   # DARWIN_USER_TEMP_DIR) on darwin.
-    #   path = "%r/test1.txt";
-    # };
+    # defaultSopsFile = ../secrets/secrets.yaml;
+    secrets.id_rsa = {
+      path = "/Users/jinxuanzhu/.ssh/id_rsa";
+      sopsFile = ../secrets/ssh/id_rsa.sops;
+      format = "binary";
+      mode = "0600";
+    };
+    secrets.id_rsapub = {
+      path = "/Users/jinxuanzhu/.ssh/id_rsa.pub";
+      sopsFile = ../secrets/ssh/id_rsa.pub.sops;
+      format = "binary";
+      mode = "0600";
+    };
   };
 }

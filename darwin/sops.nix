@@ -11,14 +11,13 @@
 
   sops = {
     age.keyFile = "/Users/jinxuanzhu/.config/sops/age/keys.txt";
-    # defaultSopsFile = ../secrets/secrets.yaml;
     secrets.id_rsa = {
       path = "/Users/jinxuanzhu/.ssh/id_rsa";
       sopsFile = ../secrets/ssh/id_rsa.sops;
       format = "binary";
       mode = "0600";
     };
-    secrets.id_rsapub = {
+    secrets."id_rsa.pub" = {
       path = "/Users/jinxuanzhu/.ssh/id_rsa.pub";
       sopsFile = ../secrets/ssh/id_rsa.pub.sops;
       format = "binary";

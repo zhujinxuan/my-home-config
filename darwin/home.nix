@@ -8,6 +8,7 @@
     sshfs-fuse
     unar
     wget
+    mariadb
   ];
 
   home.username = "jinxuanzhu";

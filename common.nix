@@ -3,6 +3,8 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     fzf
     # C server for emacs
@@ -51,6 +53,12 @@
     age
     ssh-to-age
     neovim
+    # Applications
+    (discord.override {
+      # remove any overrides that you don't want
+      withOpenASAR = true;
+      withVencord = true;
+    })
   ];
 
   programs.git = {

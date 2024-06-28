@@ -20,6 +20,23 @@
     }:
     {
 
+      homeConfigurations."jinxuanzhu@MacBookM1-Pro.local" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          ./common.nix
+          ./darwin/home.nix
+          ./darwin/sops.nix
+        ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+        extraSpecialArgs = {
+          inherit sops-nix;
+        };
+      };
       homeConfigurations."jinxuanzhu@MacBook-Pro.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-darwin";
 

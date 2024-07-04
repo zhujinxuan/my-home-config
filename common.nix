@@ -53,12 +53,6 @@
     age
     ssh-to-age
     neovim
-    # Applications
-    (discord.override {
-      # remove any overrides that you don't want
-      withOpenASAR = true;
-      withVencord = true;
-    })
   ];
 
   programs.git = {

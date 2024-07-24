@@ -53,6 +53,7 @@
     age
     ssh-to-age
     neovim
+    yazi
   ];
 
   programs.git = {
@@ -145,6 +146,11 @@
       tmux.itermIntegration = true;
       autosuggestions.color = "fg=blue";
     };
+  };
+
+  programs.texlive = {
+    enable = true;
+    extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
   };
 
   programs.ssh = {

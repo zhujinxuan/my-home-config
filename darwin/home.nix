@@ -9,7 +9,10 @@
     unar
     wget
     mariadb
+    python311Packages.conda
+    python311
   ];
+  programs.poetry.enable = true;
 
   home.username = "jinxuanzhu";
   home.homeDirectory = "/Users/jinxuanzhu";

@@ -40,3 +40,5 @@ alias mamp-mysql=/Applications/MAMP/Library/bin/mysql
 # export KALEIDOSCOPE_DIR=${HOME}/git/Kaleidoscope
 
 source ./sensitive.zsh
+
+# source ~/.conda/bin/activate

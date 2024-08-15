@@ -148,11 +148,6 @@
     };
   };
 
-  programs.texlive = {
-    enable = true;
-    extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
-  };
-
   programs.ssh = {
     enable = true;
     package = pkgs.openssh;

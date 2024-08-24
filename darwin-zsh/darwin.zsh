@@ -41,4 +41,5 @@ alias mamp-mysql=/Applications/MAMP/Library/bin/mysql
 
 source ./sensitive.zsh
 
-# source ~/.conda/bin/activate
+source ~/.conda/bin/activate
+conda deactivate

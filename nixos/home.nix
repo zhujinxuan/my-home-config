@@ -9,7 +9,6 @@
     touchegg
     fira-code
     fira-code-symbols
-    httpie
     # nerdfonts
   ];
 
@@ -27,7 +26,9 @@
     size = 128;
   };
 
-  programs.chromium = { enable = true; };
+  programs.chromium = {
+    enable = true;
+  };
 
   programs.urxvt = {
     enable = true;
@@ -43,7 +44,8 @@
       background = "[80]#000000";
       depth = 32;
       cursorColor = "#afbfbf";
-      "perl-ext-common" = with builtins;
+      "perl-ext-common" =
+        with builtins;
         concatStringsSep "," [
           "default"
           "clipboard"
@@ -51,8 +53,7 @@
           "keyboard-select"
           "tabbed"
         ];
-      "perl-lib" = with builtins;
-        concatStringsSep "," [ "${pkgs.urxvt_perls}/lib/urxvt/perl" ];
+      "perl-lib" = with builtins; concatStringsSep "," [ "${pkgs.urxvt_perls}/lib/urxvt/perl" ];
       "urlLauncher" = "firefox";
       "underLineURLs" = true;
       "underButtons" = 1;
@@ -82,14 +83,22 @@
       fadeDelta = 2;
     };
 
-    clipmenu = { enable = true; };
+    clipmenu = {
+      enable = true;
+    };
 
-    dropbox = { enable = true; };
+    dropbox = {
+      enable = true;
+    };
 
-    dunst = { enable = true; };
+    dunst = {
+      enable = true;
+    };
   };
 
-  systemd.user = { startServices = true; };
+  systemd.user = {
+    startServices = true;
+  };
 
   xdg.mimeApps = {
     enable = true;

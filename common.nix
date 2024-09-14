@@ -32,6 +32,7 @@
     jwt-cli
     qmk
     bottom
+    xh
     # Python
     pyright
     # Dev tools
@@ -40,7 +41,6 @@
     pdftk
     gnused
     coreutils
-    httpie
     rsync
     socat
     imagemagick

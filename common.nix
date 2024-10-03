@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  flox,
+  ...
+}:
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

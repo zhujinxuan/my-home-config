@@ -32,8 +32,8 @@
     rustfmt
     fselect
     dua
-    nixfmt-rfc-style
-    fasd
+    nixfmt
+    zoxide
     jwt-cli
     qmk
     bottom
@@ -63,19 +63,25 @@
 
   programs.git = {
     enable = true;
-    userName = "zhujinxuan";
-    userEmail = "zhujinxuan@gmail.com";
-    delta = {
-      enable = true;
-      options = {
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-decoration-style = "none";
-          file-style = "bold yellow ul";
-        };
-        features = "decorations";
-        whitespace-error-style = "22 reverse";
+    settings = {
+      user = {
+        name = "zhujinxuan";
+        email = "zhujinxuan@gmail.com";
       };
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      decorations = {
+        commit-decoration-style = "bold yellow box ul";
+        file-decoration-style = "none";
+        file-style = "bold yellow ul";
+      };
+      features = "decorations";
+      whitespace-error-style = "22 reverse";
     };
   };
 
@@ -133,7 +139,6 @@
         "editor"
         "history"
         "directory"
-        "fasd"
         "spectrum"
         "ssh"
         "completion"
@@ -152,10 +157,16 @@
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.ssh = {
     enable = true;
     package = pkgs.openssh;
-    controlPersist = "4h";
+    enableDefaultConfig = true;
+    settings."*".ControlPersist = "4h";
     matchBlocks = {
       "egenerationmarketing.com" = {
         hostname = "egenerationmarketing.com";

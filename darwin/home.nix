@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  per-directory-history,
+  ...
+}:
 
 {
   # Let Home Manager install and manage itself.
@@ -9,8 +14,8 @@
     unar
     wget
     mariadb
-    python311Packages.conda
-    python311
+    python3Packages.conda
+    python3
   ];
   programs.poetry.enable = true;
 
@@ -36,7 +41,7 @@
     {
       name = "per-directory-history";
       file = "per-directory-history.zsh";
-      src = ../per-directory-history;
+      src = per-directory-history;
     }
   ];
 

@@ -39,7 +39,7 @@ alias mamp-mysql=/Applications/MAMP/Library/bin/mysql
 # eval "$(direnv hook zsh)"
 # export KALEIDOSCOPE_DIR=${HOME}/git/Kaleidoscope
 
-source ./sensitive.zsh
+[[ -f ~/.zsh/sensitive.zsh ]] && source ~/.zsh/sensitive.zsh
 source  /Users/jinxuanzhu/.conda/etc/profile.d/conda.sh
 # source ~/.conda/bin/activate build123d
 # conda deactivate

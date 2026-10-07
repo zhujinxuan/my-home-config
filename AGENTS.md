@@ -2,6 +2,10 @@
 
 Home Manager configuration for jinxuanzhu's macOS machines (`jinxuanzhu@MacBookM1-Pro.local`, aarch64-darwin). Nix flake; entry points are `flake.nix` → `common.nix` + `darwin/home.nix` + `darwin/sops.nix`.
 
+## Package ownership
+
+`frpc` stays under Homebrew (`/opt/homebrew`), outside this flake, for now: it must stay alive while home-manager configurations are being updated or rebuilt. When touching `home.packages`, leave `frpc` in brew.
+
 ## Agent skills
 
 ### Issue tracker

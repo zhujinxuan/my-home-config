@@ -1,6 +1,5 @@
 # Customize to your needs...
 
-compdef '_command_names -e' notify
 #程序关联
 alias -s js='emacsclient -n'
 alias -s ts='emacsclient -n'
@@ -28,6 +27,7 @@ autoload zed
 setopt nolistambiguous
 autoload -U compinit && compinit
 
+compdef '_command_names -e' notify
 setopt clobber
 
 backup_decrypt() {

@@ -9,3 +9,7 @@ creation_rules:
     key_groups:
       - age:
           - *admin_bob
+  - path_regex: secrets/.*\.sops$
+    key_groups:
+      - age:
+          - *admin_bob

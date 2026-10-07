@@ -23,5 +23,17 @@
       format = "binary";
       mode = "0600";
     };
+    secrets.sensitive_zsh = {
+      path = "/Users/jinxuanzhu/.zsh/sensitive.zsh";
+      sopsFile = ../secrets/zsh/sensitive.zsh.sops;
+      format = "binary";
+      mode = "0600";
+    };
+    secrets.webdav_password = {
+      path = "/Users/jinxuanzhu/.config/webdav/password";
+      sopsFile = ../secrets/webdav/password.sops;
+      format = "binary";
+      mode = "0600";
+    };
   };
 }

@@ -13,7 +13,7 @@ let
   # Decrypted at activation by sops-nix (darwin/sops.nix).
   rustfsAccessKeyFile = "/Users/jinxuanzhu/.config/rustfs/access_key";
   rustfsSecretKeyFile = "/Users/jinxuanzhu/.config/rustfs/secret_key";
-  rustfsMountPoint = "${config.home.homeDirectory}/rustfs-mount";
+  rustfsMountPoint = "${config.home.homeDirectory}/rustfs-mounted";
   rcloneBin = "${pkgs.rclone}/bin/rclone";
 
   # The rclone remote "rustfs" is defined entirely through RCLONE_CONFIG_*

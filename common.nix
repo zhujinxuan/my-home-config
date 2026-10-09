@@ -34,6 +34,7 @@
     dua
     nixfmt
     zoxide
+    zellij
     jwt-cli
     qmk
     bottom
@@ -156,6 +157,12 @@
       autosuggestions.color = "fg=blue";
     };
   };
+
+  # mise is installed standalone (~/.local/bin/mise, self-updating);
+  # only hook it into interactive shells here.
+  programs.zsh.initExtra = ''
+    command -v mise >/dev/null && eval "$(mise activate zsh)"
+  '';
 
   programs.zoxide = {
     enable = true;

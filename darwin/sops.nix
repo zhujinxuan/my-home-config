@@ -29,9 +29,15 @@
       format = "binary";
       mode = "0600";
     };
-    secrets.webdav_password = {
-      path = "/Users/jinxuanzhu/.config/webdav/password";
-      sopsFile = ../secrets/webdav/password.sops;
+    secrets.ugnas_rustfs_access_key = {
+      path = "/Users/jinxuanzhu/.config/rustfs/access_key";
+      sopsFile = ../secrets/rustfs/access_key.sops;
+      format = "binary";
+      mode = "0600";
+    };
+    secrets.ugnas_rustfs_secret_key = {
+      path = "/Users/jinxuanzhu/.config/rustfs/secret_key";
+      sopsFile = ../secrets/rustfs/secret_key.sops;
       format = "binary";
       mode = "0600";
     };

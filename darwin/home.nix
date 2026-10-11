@@ -5,9 +5,21 @@
   ...
 }:
 let
-  # RustFS S3 API, tunneled to localhost by frpc (visitor "unas-rustfs-v",
-  # see ~/.config/frpc/frpc-services.toml); console is on 127.0.0.1:9001.
-  rustfsEndpoint = "http://127.0.0.1:9000";
+  # RustFS lives on the NAS (192.168.110.147) and this Mac always shares its
+  # LAN, so traffic goes direct — no frpc/VPS relay for the mount anymore.
+  # One macOS catch: Local Network Privacy blocks unsigned nix-store binaries
+  # (rclone) from dialing RFC1918 hosts, while Apple-signed binaries
+  # (/usr/bin/ssh) are exempt and loopback is exempt. So ssh forwards
+  # 127.0.0.1:19000 -> NAS RustFS :9000 and rclone stays on loopback.
+  # NAS ssh auth is pubkey-only with ~/.ssh/id_ed25519 — authorize once with:
+  #   ssh-copy-id -i ~/.ssh/id_ed25519.pub ugnasjz@192.168.110.147
+  # Console over LAN: http://192.168.110.147:9001 (grant the browser Local
+  # Network access if prompted). frpc's rustfs visitors are now unused.
+  rustfsNasHost = "192.168.110.147";
+  rustfsNasUser = "ugnasjz";
+  # 19000, not 9000: frpc's rustfs visitor still binds 127.0.0.1:9000
+  rustfsTunnelPort = 19000;
+  rustfsEndpoint = "http://127.0.0.1:${toString rustfsTunnelPort}";
   rustfsBucket = "ugnas-shared";
   rustfsRootDir = "rclone-mount-to-disk";
   # Decrypted at activation by sops-nix (darwin/sops.nix).
@@ -32,15 +44,55 @@ let
     mkdir -p "${rustfsMountPoint}"
     # clear a stale mount left by a previous run before remounting
     /sbin/umount "${rustfsMountPoint}" 2>/dev/null || true
+
+    # ssh carries the LAN hop because Apple-signed binaries are exempt from
+    # Local Network Privacy while the unsigned nix rclone is not (see the
+    # comment on rustfsEndpoint). Kill any tunnel left by a previous run.
+    mkdir -p "$HOME/.cache"
+    pidfile="$HOME/.cache/rustfs-tunnel.pid"
+    if [ -f "$pidfile" ] && kill -0 "$(cat "$pidfile")" 2>/dev/null; then
+      kill "$(cat "$pidfile")" 2>/dev/null || true
+      sleep 1
+    fi
+    /usr/bin/ssh -N \
+      -o BatchMode=yes -o ExitOnForwardFailure=yes \
+      -o ServerAliveInterval=15 -o ServerAliveCountMax=3 \
+      -o IdentitiesOnly=yes -o IdentityFile="$HOME/.ssh/id_ed25519" \
+      -L 127.0.0.1:${toString rustfsTunnelPort}:127.0.0.1:9000 \
+      "${rustfsNasUser}@${rustfsNasHost}" &
+    echo $! > "$pidfile"
+    trap 'p=$(cat "$pidfile" 2>/dev/null || true); [ -n "$p" ] && kill "$p" 2>/dev/null || true' EXIT
+
+    # wait for the forward to accept connections (NAS awake, key authorized)
+    ready=0
+    for _ in $(seq 1 15); do
+      if (exec 3<>"/dev/tcp/127.0.0.1/${toString rustfsTunnelPort}") 2>/dev/null; then
+        ready=1
+        break
+      fi
+      sleep 1
+    done
+    if [ "$ready" != 1 ]; then
+      echo "ssh forward to ${rustfsNasHost}:9000 never came up; NAS asleep or key not authorized?" >&2
+      echo "authorize once: ssh-copy-id -i ~/.ssh/id_ed25519.pub ${rustfsNasUser}@${rustfsNasHost}" >&2
+      exit 1
+    fi
+
     export RCLONE_CONFIG_RUSTFS_TYPE=s3
     export RCLONE_CONFIG_RUSTFS_PROVIDER=Other
     export RCLONE_CONFIG_RUSTFS_ENDPOINT="${rustfsEndpoint}"
     export RCLONE_CONFIG_RUSTFS_ACCESS_KEY_ID="$(< "${rustfsAccessKeyFile}")"
     export RCLONE_CONFIG_RUSTFS_SECRET_ACCESS_KEY="$(< "${rustfsSecretKeyFile}")"
-    exec ${rcloneBin} mount "rustfs:${rustfsBucket}/${rustfsRootDir}" "${rustfsMountPoint}" \
-      --vfs-cache-mode writes \
-      -o backend=fskit \
-      --log-level INFO
+    # self-heal loop: restart rclone after eject/crash without launchd churn;
+    # launchd KeepAlive remains the outer safety net for script-level deaths
+    while true; do
+      ${rcloneBin} mount "rustfs:${rustfsBucket}/${rustfsRootDir}" "${rustfsMountPoint}" \
+        --vfs-cache-mode writes \
+        -o backend=fskit \
+        --log-level INFO || echo "rclone mount exited (rc=$?); remounting in 5s"
+      sleep 5
+      /sbin/umount "${rustfsMountPoint}" 2>/dev/null || true
+    done
   '';
 in
 {
@@ -70,7 +122,7 @@ in
   '';
 
   # Auto-mount the NAS at login and self-heal: KeepAlive restarts rclone
-  # after eject, crash, or tunnel outage. Log: ~/Library/Logs/rustfs-nas.log
+  # after eject, crash, or network outage. Log: ~/Library/Logs/rustfs-nas.log
   launchd.agents.rustfs-nas = {
     enable = true;
     config = {
